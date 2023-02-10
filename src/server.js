@@ -10,6 +10,7 @@ import {
   genericErrorHandler,
 } from "./errorHandlers.js";
 import userRouter from "./api/users/index.js";
+import accomodationRouter from "./api/accomodations/index.js";
 import googleStrategy from "./lib/auth/google.js";
 
 const server = express();
@@ -21,6 +22,7 @@ server.use(express.json());
 server.use(passport.initialize());
 
 server.use("/users", userRouter);
+server.use("/accomodations", accomodationRouter);
 
 server.use(unauthorizedErrorHandler);
 server.use(badRequestHandler);
