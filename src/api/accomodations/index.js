@@ -46,7 +46,7 @@ accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
     }
 
     if (city) {
-      query = query.where("city").equals(city);
+      query = query.where("city").regex(new RegExp(city, "i"));
     }
 
     if (minPrice) {
