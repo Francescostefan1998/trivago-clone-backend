@@ -16,7 +16,11 @@ accomodationRouter.post(
   async (req, res, next) => {
     try {
       console.log("POST");
-      const newAcc = new AccomodationModel(req.body);
+      const newAcc = new AccomodationModel({
+        ...req.body,
+        host: req.user._id,
+      });
+      console.log(newAcc);
       const { _id } = await newAcc.save();
       res.status(201).send({ _id });
     } catch (error) {
@@ -59,4 +63,80 @@ accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
     next(error);
   }
 });
+
+accomodationRouter.get(
+  "/:accomodationId",
+  JWTAuthMiddleware,
+  async (req, res, next) => {
+    try {
+      const accomodation = await AccomodationModel.findById(
+        req.params.accomodationId
+      );
+      if (accomodation) {
+        res.send(accomodation);
+      } else {
+        next(
+          createHttpError(
+            404,
+            `Accomodation wit id ${req.params.accomodationId} not found`
+          )
+        );
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+accomodationRouter.put(
+  "/:accomodationId",
+  JWTAuthMiddleware,
+  hostOnlyMiddleware,
+  async (req, res, next) => {
+    try {
+      const updateAuthors = await AccomodationModel.findByIdAndUpdate(
+        req.params.accomodationId,
+        req.body,
+        { new: true, runValidators: true }
+      );
+      if (updateAuthors) {
+        res.send(updateAuthors);
+      } else {
+        next(
+          createHttpError(
+            404,
+            `accomodation wit id ${req.params.accomodationId} not found`
+          )
+        );
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+accomodationRouter.delete(
+  "/:accomodationId",
+  JWTAuthMiddleware,
+  hostOnlyMiddleware,
+  async (req, res, next) => {
+    try {
+      const deleteUser = await AccomodationModel.findByIdAndDelete(
+        req.params.accomodationId
+      );
+      if (deleteUser) {
+        res.status(204).send("deleted");
+      } else {
+        next(
+          createHttpError(
+            404,
+            `accomodation wit id ${req.params.accomodationId} not found`
+          )
+        );
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export default accomodationRouter;

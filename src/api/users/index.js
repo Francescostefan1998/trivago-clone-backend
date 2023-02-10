@@ -12,6 +12,7 @@ userRouter.post("/", async (req, res, next) => {
   try {
     console.log("POST");
     const newUser = new UsersModel(req.body);
+    console.log(newUser);
     const { _id } = await newUser.save();
     res.status(201).send({ _id });
   } catch (error) {
