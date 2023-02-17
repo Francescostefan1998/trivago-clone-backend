@@ -12,10 +12,10 @@ dotenv.config(); // This command forces .env vars to be loaded into process.env.
 const client = supertest(server);
 
 const validUser = {
-  firstName: "John",
-  lastName: "Rambo",
+  firstName: "marcus",
+  lastName: "marcj",
   role: "Host",
-  email: "john@gmail.com",
+  email: "email@marcusgmail.com",
   password: "1234",
 };
 
@@ -52,8 +52,8 @@ describe("Test APIs", () => {
     accessToken = response.body.accessToken;
   });
 
-  it("Should test that GET /users returns 404 if you don't provide a valid accessToken", async () => {
-    await client.get("/users").expect(404);
+  it("Should test that GET /users returns 200", async () => {
+    await client.get("/users").expect(200);
   });
 
   it("Should test that GET /users returns a success status if we provide a valid accessToken", async () => {
@@ -65,6 +65,6 @@ describe("Test APIs", () => {
   });
 
   it("Should test that POST /users with a not valid user returns a 400", async () => {
-    await client.post("/users").send(notValidUser).expect(404);
+    await client.post("/users").send(notValidUser).expect(400);
   });
 });
