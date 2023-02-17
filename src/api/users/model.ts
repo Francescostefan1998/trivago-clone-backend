@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import { UserDocument, UserModel } from "./types";
+
 const { Schema, model } = mongoose;
 
 const usersSchema = new Schema(
@@ -7,9 +9,9 @@ const usersSchema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
-    password: { type: String, required: false },
+    password: { type: String, required: true },
     role: { type: String, enum: ["Guest", "Host"], default: "Guest" },
-    googleId: { type: String, required: false },
+    // googleId: { type: String, required: false },
   },
   {
     timestamps: true,
@@ -22,8 +24,8 @@ usersSchema.pre("save", async function (next) {
   if (currentUser.isModified("password")) {
     const plainPW = currentUser.password;
 
-    const hash = await bcrypt.hash(plainPW!, 11);
-    currentUser.password! = hash;
+    const hash = await bcrypt.hash(plainPW, 11);
+    currentUser.password = hash;
   }
   next();
 });
@@ -53,4 +55,4 @@ usersSchema.static("checkCredentials", async function (email, password) {
   }
 });
 
-export default model("User", usersSchema);
+export default model<UserDocument, UserModel>("User", usersSchema);

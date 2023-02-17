@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 import createHttpError from "http-errors";
 import passport from "passport";
 import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth";
@@ -35,7 +35,7 @@ accomodationRouter.post(
   } catch (error) {
     next(error);
   }
-});*/
+});
 
 accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
   try {
@@ -139,4 +139,4 @@ accomodationRouter.delete(
   }
 );
 
-export default accomodationRouter;
+export default accomodationRouter;*/

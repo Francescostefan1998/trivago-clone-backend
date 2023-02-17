@@ -1,4 +1,4 @@
-import createHttpError from "http-errors";
+/*import createHttpError from "http-errors";
 import atob from "atob";
 import usersModel from "../../api/users/model.js";
 
@@ -23,3 +23,4 @@ export const basicAuthMiddleware = async (req, res, next) => {
     }
   }
 };
+*/

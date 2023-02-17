@@ -10,19 +10,19 @@ import {
   genericErrorHandler,
 } from "./errorHandlers";
 import userRouter from "./api/users";
-import accomodationRouter from "./api/accomodations";
-import googleStrategy from "./lib/auth/google";
+//import accomodationRouter from "./api/accomodations";
+//import googleStrategy from "./lib/auth/google";
 
 const server = express();
 const port = process.env.PORT || 3001;
-passport.use("google", googleStrategy);
+//passport.use("google", googleStrategy);
 
 server.use(cors());
 server.use(express.json());
-server.use(passport.initialize());
+//server.use(passport.initialize());
 
 server.use("/users", userRouter);
-server.use("/accomodations", accomodationRouter);
+//server.use("/accomodations", accomodationRouter);
 
 server.use(unauthorizedErrorHandler);
 server.use(badRequestHandler);

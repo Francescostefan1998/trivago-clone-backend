@@ -3,7 +3,7 @@ import createHttpError from "http-errors";
 import passport from "passport";
 import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth";
 import { createAccessToken } from "../../lib/auth/tools";
-import googleStrategy from "../../lib/auth/google";
+//import googleStrategy from "../../lib/auth/google";
 
 import UsersModel from "./model";
 const userRouter = express.Router();
@@ -27,7 +27,7 @@ userRouter.get("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+}); /*
 userRouter.get(
   "/googleLogin",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -38,22 +38,9 @@ userRouter.get(
   async (req, res, next) => {
     console.log(req.user);
     //res.send({ accessToken: req.user.accessToken });
-    res.redirect(`${process.env.FE_URL}?accessToken=${req.user.accessToken}`);
+    res.redirect(`${process.env.FE_URL}?accessToken=${req.user.accessToken!}`);
   }
 );
-
-userRouter.get("/me", JWTAuthMiddleware, async (req, res, next) => {
-  try {
-    const user = await UsersModel.findById(req.user._id);
-    if (user) {
-      res.send(user);
-    } else {
-      res.send({ message: "Token provided wrong" });
-    }
-  } catch (error) {
-    next(error);
-  }
-});
 
 userRouter.put("/me", JWTAuthMiddleware, async (req, res, next) => {
   try {
@@ -77,7 +64,7 @@ userRouter.delete("/me", JWTAuthMiddleware, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+});*/
 
 userRouter.post("/login", async (req, res, next) => {
   try {

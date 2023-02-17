@@ -1,4 +1,4 @@
-import createHttpError from "http-errors";
+/*import createHttpError from "http-errors";
 
 export const hostOnlyMiddleware = (req, res, next) => {
   console.log(req.user);
@@ -8,3 +8,4 @@ export const hostOnlyMiddleware = (req, res, next) => {
     next(createHttpError(403, "Host only endpoint!"));
   }
 };
+*/
