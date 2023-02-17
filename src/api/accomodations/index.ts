@@ -1,9 +1,9 @@
 import express from "express";
 import createHttpError from "http-errors";
 import passport from "passport";
-import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth.js";
-import { createAccessToken } from "../../lib/auth/tools.js";
-import { hostOnlyMiddleware } from "../../lib/auth/hostOnly.js";
+import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth.ts";
+import { createAccessToken } from "../../lib/auth/tools.ts";
+import { hostOnlyMiddleware } from "../../lib/auth/hostOnly.ts";
 
 import googleStrategy from "../../lib/auth/google.js";
 import AccomodationModel from "./model.js";

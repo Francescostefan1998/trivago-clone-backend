@@ -8,10 +8,10 @@ import {
   badRequestHandler,
   notFoundHandler,
   genericErrorHandler,
-} from "./errorHandlers.js";
-import userRouter from "./api/users/index.js";
-import accomodationRouter from "./api/accomodations/index.js";
-import googleStrategy from "./lib/auth/google.js";
+} from "./errorHandlers.ts";
+import userRouter from "./api/users/index.ts";
+import accomodationRouter from "./api/accomodations/index.ts";
+import googleStrategy from "./lib/auth/google.ts";
 
 const server = express();
 const port = process.env.PORT || 3001;
