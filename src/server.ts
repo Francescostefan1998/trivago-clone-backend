@@ -1,6 +1,7 @@
 import express from "express";
 import listEndpoints from "express-list-endpoints";
 import cors from "cors";
+import { createServer } from "http";
 import mongoose from "mongoose";
 import passport from "passport";
 import {
@@ -13,27 +14,22 @@ import userRouter from "./api/users";
 //import accomodationRouter from "./api/accomodations";
 //import googleStrategy from "./lib/auth/google";
 
-const server = express();
-const port = process.env.PORT || 3001;
 //passport.use("google", googleStrategy);
+const expressServer = express();
 
-server.use(cors());
-server.use(express.json());
-//server.use(passport.initialize());
+// ************************************ SOCKET.IO ********************************
+const httpServer = createServer(expressServer);
 
-server.use("/users", userRouter);
-//server.use("/accomodations", accomodationRouter);
+expressServer.use(cors());
+expressServer.use(express.json());
+//.use(passport.initialize());
 
-server.use(unauthorizedErrorHandler);
-server.use(badRequestHandler);
-server.use(notFoundHandler);
-server.use(genericErrorHandler);
-mongoose.connect(process.env.MONGO_URL!);
+expressServer.use("/users", userRouter);
+//.use("/accomodations", accomodationRouter);
 
-mongoose.connection.on("connected", () => {
-  console.log("Connected to MongoDB");
-  server.listen(port, () => {
-    console.table(listEndpoints(server));
-    console.log(`Server is running on port ${port}`);
-  });
-});
+expressServer.use(unauthorizedErrorHandler);
+expressServer.use(badRequestHandler);
+expressServer.use(notFoundHandler);
+expressServer.use(genericErrorHandler);
+
+export { httpServer, expressServer };
