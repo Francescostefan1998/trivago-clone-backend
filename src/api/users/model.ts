@@ -22,8 +22,8 @@ usersSchema.pre("save", async function (next) {
   if (currentUser.isModified("password")) {
     const plainPW = currentUser.password;
 
-    const hash = await bcrypt.hash(plainPW, 11);
-    currentUser.password = hash;
+    const hash = await bcrypt.hash(plainPW!, 11);
+    currentUser.password! = hash;
   }
   next();
 });

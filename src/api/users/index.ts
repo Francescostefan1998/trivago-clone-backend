@@ -1,11 +1,11 @@
 import express from "express";
 import createHttpError from "http-errors";
 import passport from "passport";
-import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth.ts";
-import { createAccessToken } from "../../lib/auth/tools.ts";
-import googleStrategy from "../../lib/auth/google.ts";
+import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth";
+import { createAccessToken } from "../../lib/auth/tools";
+import googleStrategy from "../../lib/auth/google";
 
-import UsersModel from "./model.ts";
+import UsersModel from "./model";
 const userRouter = express.Router();
 
 userRouter.post("/", async (req, res, next) => {

@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 import listEndpoints from "express-list-endpoints";
 import mongoose from "mongoose";
 
@@ -17,3 +17,4 @@ mongoose.connection.on("connected", () => {
     console.log(`Server is running on port ${port}`);
   });
 });
+*/

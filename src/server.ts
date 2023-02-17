@@ -8,10 +8,10 @@ import {
   badRequestHandler,
   notFoundHandler,
   genericErrorHandler,
-} from "./errorHandlers.ts";
-import userRouter from "./api/users/index.ts";
-import accomodationRouter from "./api/accomodations/index.ts";
-import googleStrategy from "./lib/auth/google.ts";
+} from "./errorHandlers";
+import userRouter from "./api/users";
+import accomodationRouter from "./api/accomodations";
+import googleStrategy from "./lib/auth/google";
 
 const server = express();
 const port = process.env.PORT || 3001;
@@ -28,7 +28,7 @@ server.use(unauthorizedErrorHandler);
 server.use(badRequestHandler);
 server.use(notFoundHandler);
 server.use(genericErrorHandler);
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGO_URL!);
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
