@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { expressServer } from "../server";
+import server from "../server";
 import UsersModel from "../api/users/model";
 
 dotenv.config(); // This command forces .env vars to be loaded into process.env. This is the way to do it whenever you can't use -r dotenv/config
@@ -9,7 +9,7 @@ dotenv.config(); // This command forces .env vars to be loaded into process.env.
 // supertest is capable of executing server.listen of our Express app if we pass the Express server to it
 // It will give us back a client that can be used to run http requests on that server
 
-const client = supertest(expressServer);
+const client = supertest(server);
 
 const validUser = {
   firstName: "John",

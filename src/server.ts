@@ -15,21 +15,19 @@ import userRouter from "./api/users";
 //import googleStrategy from "./lib/auth/google";
 
 //passport.use("google", googleStrategy);
-const expressServer = express();
-
+const server = express();
 // ************************************ SOCKET.IO ********************************
-const httpServer = createServer(expressServer);
 
-expressServer.use(cors());
-expressServer.use(express.json());
+server.use(cors());
+server.use(express.json());
 //.use(passport.initialize());
 
-expressServer.use("/users", userRouter);
+server.use("/users", userRouter);
 //.use("/accomodations", accomodationRouter);
 
-expressServer.use(unauthorizedErrorHandler);
-expressServer.use(badRequestHandler);
-expressServer.use(notFoundHandler);
-expressServer.use(genericErrorHandler);
+server.use(unauthorizedErrorHandler);
+server.use(badRequestHandler);
+server.use(notFoundHandler);
+server.use(genericErrorHandler);
 
-export { httpServer, expressServer };
+export default server;
