@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "dev": "nodemon -r dotenv/config ./src/server.ts",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+    "dev": "nodemon -r dotenv/config ./src/index.ts",
     "build": "tsc"
   },
   "repository": {

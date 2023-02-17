@@ -5,7 +5,7 @@ import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth";
 import { createAccessToken } from "../../lib/auth/tools";
 import { hostOnlyMiddleware } from "../../lib/auth/hostOnly";
 
-import googleStrategy from "../../lib/auth/google.js";
+//import googleStrategy from "../../lib/auth/google.js";
 import AccomodationModel from "./model.js";
 const accomodationRouter = express.Router();
 
@@ -28,7 +28,7 @@ accomodationRouter.post(
     }
   }
 );
-/*accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
+accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const accomodations = await AccomodationModel.find();
     res.send(accomodations);
