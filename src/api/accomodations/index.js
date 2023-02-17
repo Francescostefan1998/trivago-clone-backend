@@ -64,6 +64,8 @@ accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
   }
 });
 
+
+
 accomodationRouter.get(
   "/:accomodationId",
   JWTAuthMiddleware,
