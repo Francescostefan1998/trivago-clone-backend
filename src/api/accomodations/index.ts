@@ -1,14 +1,14 @@
-/*import express from "express";
+import express from "express";
 import createHttpError from "http-errors";
 import passport from "passport";
 import { JWTAuthMiddleware } from "../../lib/auth/jwtAuth";
 import { createAccessToken } from "../../lib/auth/tools";
-import { hostOnlyMiddleware } from "../../lib/auth/hostOnly";
+import { UserDocument, UserModel } from "../users/types";
 
 //import googleStrategy from "../../lib/auth/google.js";
 import AccomodationModel from "./model.js";
 const accomodationRouter = express.Router();
-
+/*
 accomodationRouter.post(
   "/",
   JWTAuthMiddleware,
@@ -27,7 +27,7 @@ accomodationRouter.post(
       next(error);
     }
   }
-);
+);*/
 accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const accomodations = await AccomodationModel.find();
@@ -36,7 +36,7 @@ accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
     next(error);
   }
 });
-
+/*
 accomodationRouter.get("/", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const maxPrice = req.query.maxPrice;
@@ -137,6 +137,6 @@ accomodationRouter.delete(
       next(error);
     }
   }
-);
+);*/
 
-export default accomodationRouter;*/
+export default accomodationRouter;

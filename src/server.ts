@@ -23,7 +23,7 @@ server.use(express.json());
 //.use(passport.initialize());
 
 server.use("/users", userRouter);
-//.use("/accomodations", accomodationRouter);
+//server.use("/accomodations", accomodationRouter);
 
 server.use(unauthorizedErrorHandler);
 server.use(badRequestHandler);
